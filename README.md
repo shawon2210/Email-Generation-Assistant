@@ -5,17 +5,60 @@ A production-quality Email Generation Assistant that generates professional
 emails using advanced prompt engineering, evaluated with three custom metrics
 across a dual-model comparison framework.
 
+**Now with a responsive Streamlit web interface!**
+
 ---
 
 ## Table of Contents
-1. [Project Structure](#project-structure)
-2. [Setup & Installation](#setup--installation)
-3. [Running the Evaluation](#running-the-evaluation)
-4. [Advanced Prompt Engineering](#advanced-prompt-engineering)
-5. [Custom Evaluation Metrics](#custom-evaluation-metrics)
-6. [Model Comparison Strategy](#model-comparison-strategy)
-7. [Output Files](#output-files)
-8. [Running Tests](#running-tests)
+1. [Quick Start](#quick-start)
+2. [Web Interface](#web-interface)
+3. [Project Structure](#project-structure)
+4. [Setup & Installation](#setup--installation)
+5. [Running the Evaluation](#running-the-evaluation)
+6. [Advanced Prompt Engineering](#advanced-prompt-engineering)
+7. [Custom Evaluation Metrics](#custom-evaluation-metrics)
+8. [Model Comparison Strategy](#model-comparison-strategy)
+9. [Output Files](#output-files)
+10. [Running Tests](#running-tests)
+
+---
+
+## Quick Start
+
+### Web Interface (Recommended)
+```bash
+streamlit run app.py
+```
+Then open http://localhost:8501 in your browser.
+
+### CLI Interface
+```bash
+python3 email_assistant.py
+```
+
+---
+
+## Web Interface
+
+The Streamlit frontend provides three modes:
+
+### ✍️ Compose Email
+- Enter **Intent**, **Key Facts**, and **Tone** manually
+- Quick-fill from 10 pre-built scenarios
+- Generates both **Advanced** (Role+Few-Shot+CoT) and **Baseline** emails
+- Real-time evaluation with **3 custom metrics** (FRS, TAS, FPS)
+- Side-by-side comparison with metric visualization
+- Export results as JSON
+
+### 📊 Batch Evaluation
+- Run all 10 test scenarios through both models
+- Aggregate metric comparison table
+- Export results as CSV
+
+### 📚 Documentation
+- Prompt engineering techniques explained
+- Custom metric definitions and formulas
+- System architecture diagram
 
 ---
 
@@ -23,9 +66,11 @@ across a dual-model comparison framework.
 
 ```
 Email Generation Assistant/
-├── run_evaluation.py          # ← Main entry point
+├── app.py                     # ← Streamlit web frontend
+├── email_assistant.py         # ← CLI application
+├── run_evaluation.py          # ← Evaluation runner
 ├── requirements.txt
-├── .env.example               # Copy to .env and add GOOGLE_API_KEY
+├── .env.example               # Copy to .env and add OPENROUTER_API_KEY
 │
 ├── src/
 │   ├── prompts.py             # Advanced prompt engineering (Role + Few-Shot + CoT)
