@@ -127,6 +127,130 @@ def dry_run(scenarios_path: str) -> None:
     print("  Run without --dry-run to execute the full evaluation.\n")
 
 
+def _run_demo_evaluation(scenarios_path: str) -> list:
+    """Run the full evaluation using built-in demo emails (no API calls)."""
+    from app import _demo_email
+    from src.metrics import (
+        compute_fact_recall_score,
+        compute_tone_accuracy_score,
+        compute_fluency_professionalism_score,
+    )
+
+    with open(scenarios_path, "r", encoding="utf-8") as fh:
+        data = json.load(fh)
+    scenarios = data.get("scenarios", [])
+    total = len(scenarios)
+    results = []
+
+    DEMO_MODEL_ID = "demo-mode"
+    DEMO_ADVANCED_STRATEGY = "Demo — Advanced (Role + Few-Shot + CoT)"
+    DEMO_BASELINE_STRATEGY = "Demo — Baseline (Zero-Shot)"
+
+    for idx, scenario in enumerate(scenarios, start=1):
+        intent = scenario["intent"]
+        facts = scenario["key_facts"]
+        tone = scenario["tone"]
+
+        print(f"\n[{idx:02d}/{total}] {scenario['name']}")
+
+        print("  ► Generating Model A email (demo) …", end=" ", flush=True)
+        email_a = _demo_email(intent, facts, tone, advanced=True)
+        print("✓")
+
+        print("  ► Generating Model B email (demo) …", end=" ", flush=True)
+        email_b = _demo_email(intent, facts, tone, advanced=False)
+        print("✓")
+
+        # Model A metrics
+        print("  ► Computing metrics for Model A …", end=" ", flush=True)
+        frs_a = compute_fact_recall_score(facts, email_a)
+        tas_score_a = _heuristic_tone_score(tone, email_a)
+        tas_a = {"score": tas_score_a, "reasoning": "Heuristic scoring (no API)"}
+        fps_score_a = _heuristic_fps_score(email_a)
+        fps_a = {"score": fps_score_a, "readability_score": 0.6, "flesch_reading_ease": 55.0, "professionalism_score": 0.6, "professionalism_raw": 3, "professionalism_reasoning": "Heuristic scoring"}
+        composite_a = round((frs_a["score"] + tas_score_a + fps_score_a) / 3, 4)
+        print("✓")
+        print(f"     FRS={frs_a['score']:.3f}  TAS={tas_score_a:.3f}  FPS={fps_score_a:.3f}  → Composite={composite_a:.3f}")
+
+        # Model B metrics
+        print("  ► Computing metrics for Model B …", end=" ", flush=True)
+        frs_b = compute_fact_recall_score(facts, email_b)
+        tas_score_b = _heuristic_tone_score(tone, email_b)
+        tas_b = {"score": tas_score_b, "reasoning": "Heuristic scoring (no API)"}
+        fps_score_b = _heuristic_fps_score(email_b)
+        fps_b = {"score": fps_score_b, "readability_score": 0.5, "flesch_reading_ease": 62.0, "professionalism_score": 0.4, "professionalism_raw": 2, "professionalism_reasoning": "Heuristic scoring"}
+        composite_b = round((frs_b["score"] + tas_score_b + fps_score_b) / 3, 4)
+        print("✓")
+        print(f"     FRS={frs_b['score']:.3f}  TAS={tas_score_b:.3f}  FPS={fps_score_b:.3f}  → Composite={composite_b:.3f}")
+
+        results.append({
+            "scenario_id": scenario["id"],
+            "scenario_name": scenario["name"],
+            "intent": intent,
+            "tone": tone,
+            "key_facts": facts,
+            "human_reference_email": scenario.get("human_reference_email", ""),
+            "model_a": {
+                "model": DEMO_MODEL_ID,
+                "strategy": DEMO_ADVANCED_STRATEGY,
+                "generated_email": email_a,
+                "prompt_used": "[Demo mode — no API call]",
+                "frs": frs_a,
+                "tas": tas_a,
+                "fps": fps_a,
+                "composite_score": composite_a,
+            },
+            "model_b": {
+                "model": DEMO_MODEL_ID,
+                "strategy": DEMO_BASELINE_STRATEGY,
+                "generated_email": email_b,
+                "prompt_used": "[Demo mode — no API call]",
+                "frs": frs_b,
+                "tas": tas_b,
+                "fps": fps_b,
+                "composite_score": composite_b,
+            },
+        })
+
+    return results
+
+
+def _heuristic_tone_score(tone: str, email: str) -> float:
+    """Fallback tone scoring without API. Same logic as app.py."""
+    tone_lower = tone.lower()
+    email_lower = email.lower()
+    score = 0.5
+    formal_indicators = ["dear", "sincerely", "regards", "respectfully", "kindly", "best regards"]
+    casual_indicators = ["hey", "hi,", "cheers", "thanks,", "awesome", "cool", "great week"]
+    urgent_indicators = ["urgent", "immediately", "asap", "deadline", "time-sensitive"]
+    empathetic_indicators = ["understand", "apologize", "sorry", "appreciate", "feel", "apolog"]
+    if "formal" in tone_lower:
+        score += 0.1 * sum(1 for w in formal_indicators if w in email_lower)
+        score -= 0.05 * sum(1 for w in casual_indicators if w in email_lower)
+    elif "casual" in tone_lower or "friendly" in tone_lower:
+        score += 0.1 * sum(1 for w in casual_indicators if w in email_lower)
+    elif "urgent" in tone_lower:
+        score += 0.15 * sum(1 for w in urgent_indicators if w in email_lower)
+    elif "empathetic" in tone_lower or "apolog" in tone_lower:
+        score += 0.15 * sum(1 for w in empathetic_indicators if w in email_lower)
+    else:
+        score += 0.1
+    return min(1.0, max(0.1, round(score, 4)))
+
+
+def _heuristic_fps_score(email: str) -> float:
+    """Fallback FPS scoring without API. Same logic as app.py."""
+    has_subject = email.lower().startswith("subject:")
+    has_greeting = any(email.lower().startswith(g) for g in ["dear", "hi,", "hello", "hey"])
+    has_closing = any(c in email.lower() for c in ["regards", "sincerely", "best,", "cheers"])
+    wc = len(email.split())
+    structure_score = (
+        (0.2 if has_subject else 0) + (0.2 if has_greeting else 0) +
+        (0.2 if has_closing else 0) + (0.2 if 50 <= wc <= 300 else 0.1) + 0.2
+    )
+    return min(1.0, round(structure_score, 4))
+
+
 def main() -> None:
     args = parse_args()
 
@@ -149,6 +273,11 @@ def main() -> None:
     except KeyboardInterrupt:
         print("\n  ⚠ Evaluation interrupted by user")
         results = []
+    except EnvironmentError as e:
+        # API key not set — run in demo mode instead of failing
+        print(f"\n  ⚠ {e}")
+        print("  → Switching to DEMO MODE (no API calls needed)\n")
+        results = _run_demo_evaluation(scenarios_path=args.scenarios)
 
     if not results:
         print("No results returned. Exiting.")
@@ -160,14 +289,14 @@ def main() -> None:
     import statistics
     comp_a = round(statistics.mean(r["model_a"]["composite_score"] for r in results), 4)
     comp_b = round(statistics.mean(r["model_b"]["composite_score"] for r in results), 4)
-    winner = results[0]["model_a"]["model"] if comp_a >= comp_b else results[0]["model_b"]["model"]
+    winner_name = results[0]["model_a"]["model"] if comp_a >= comp_b else results[0]["model_b"]["model"]
 
     print("\n" + "═" * 60)
     print("  EVALUATION COMPLETE")
     print("═" * 60)
     print(f"  Model A composite avg : {comp_a:.4f}")
     print(f"  Model B composite avg : {comp_b:.4f}")
-    print(f"  Recommended model     : {winner}")
+    print(f"  Recommended model     : {winner_name}")
     print(f"\n  Output files:")
     for label, p in paths.items():
         print(f"    [{label:25s}] {p}")

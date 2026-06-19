@@ -390,7 +390,7 @@ def _demo_email(intent: str, facts: list[str], tone: str, advanced: bool) -> str
         elif "complaint" in intent.lower() or "delay" in intent.lower():
             body = f"Sorry about the issue. {facts_text} We're working on it."
         elif "schedule" in intent.lower() or "meeting" in intent.lower():
-            body = f"We need to {intent.lower()}. {fits_text} Please confirm your availability."
+            body = f"We need to {intent.lower()}. {facts_text} Please confirm your availability."
         elif "job" in intent.lower() or "application" in intent.lower():
             body = f"I applied recently and wanted to follow up. {facts_text} I'm available anytime."
         elif "sales" in intent.lower() or "outreach" in intent.lower():
@@ -398,7 +398,7 @@ def _demo_email(intent: str, facts: list[str], tone: str, advanced: bool) -> str
         elif "partnership" in intent.lower():
             body = f"Interested in partnering. {facts_text} Would love to discuss."
         elif "extension" in intent.lower() or "deadline" in intent.lower():
-            body = f"We need more time. {fits_text} Can we extend?"
+            body = f"We need more time. {facts_text} Can we extend?"
         else:
             body = f"{intent}. {facts_text} Thanks."
 

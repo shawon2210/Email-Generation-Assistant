@@ -467,7 +467,9 @@ Professional assessment report with all sections: prompt templates, metric defin
 
 MIT License — see [LICENSE](LICENSE) for details.
 
-## Developer by [github.com/shawon2210](github.com/shawon2210)
+## Author
+
+Developed by [shawon2210](https://github.com/shawon2210)
 
 ---
 
