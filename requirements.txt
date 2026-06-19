@@ -1,4 +1,4 @@
-openai>=1.12.0
-python-dotenv>=1.0.0
-textstat>=0.7.3
-streamlit>=1.40.0
+openai==2.43.0
+python-dotenv==1.0.1
+textstat==0.7.13
+streamlit==1.39.1

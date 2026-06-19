@@ -1,0 +1,26 @@
+[server]
+headless = true
+port = 8501
+enableCORS = false
+enableXsrfProtection = false
+maxUploadSize = 5
+maxMessageSize = 5
+
+[browser]
+gatherUsageStats = false
+serverAddress = "localhost"
+
+[theme]
+primaryColor = "#667eea"
+backgroundColor = "#ffffff"
+secondaryBackgroundColor = "#f8fafc"
+textColor = "#1e293b"
+font = "sans serif"
+
+[logger]
+level = "warning"
+messageFormat = "%(asctime)s %(message)s"
+
+[client]
+toolbarMode = "minimal"
+showErrorDetails = false
