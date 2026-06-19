@@ -279,7 +279,7 @@ pytest tests/ -v --integration
 | `pandas` | (Available for extended analysis) |
 | `reportlab` | (Available for PDF report generation) |
 
----
+---  Developed by [shawon]
 
 ## License
 
