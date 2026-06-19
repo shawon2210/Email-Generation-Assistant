@@ -1,0 +1,138 @@
+{
+  "metadata": {
+    "description": "10 unique test scenarios for the Email Generation Assistant evaluation",
+    "version": "1.0"
+  },
+  "scenarios": [
+    {
+      "id": 1,
+      "name": "Post-Meeting Strategy Follow-Up",
+      "intent": "Follow up after a product strategy meeting to summarise decisions and outline next steps",
+      "key_facts": [
+        "The meeting took place on June 15th",
+        "We agreed on the Q3 product roadmap priorities",
+        "Three action items were assigned: design mockups by June 22, engineering estimates by June 25, and stakeholder sign-off by June 30",
+        "The next follow-up meeting is scheduled for July 1st"
+      ],
+      "tone": "Formal",
+      "human_reference_email": "Subject: Follow-Up – Product Strategy Meeting, June 15th\n\nDear Team,\n\nThank you for your active participation in yesterday's product strategy meeting on June 15th. It was a productive session, and I wanted to capture our key decisions and next steps while they are fresh.\n\nFollowing our discussion, we have aligned on the Q3 product roadmap priorities. To move forward effectively, we have assigned three action items:\n\n1. Design mockups to be completed by June 22nd\n2. Engineering effort estimates to be submitted by June 25th\n3. Stakeholder sign-off to be secured by June 30th\n\nI would ask each owner to please confirm receipt of their respective action item and flag any blockers at the earliest opportunity.\n\nOur next follow-up meeting is scheduled for July 1st. I will circulate a formal agenda in advance. Please do not hesitate to reach out should you have any questions or concerns in the meantime.\n\nBest regards,\n[Your Name]\n[Your Title] | [Your Company]"
+    },
+    {
+      "id": 2,
+      "name": "Vendor Proposal Request",
+      "intent": "Request a detailed proposal from a vendor for cloud migration services",
+      "key_facts": [
+        "Our budget for this project is $50,000",
+        "The project must be completed by August 31st",
+        "The migration involves approximately 200 employees and their associated systems",
+        "We require a proposal covering timeline, pricing, and post-migration support"
+      ],
+      "tone": "Professional and direct",
+      "human_reference_email": "Subject: Request for Proposal – Cloud Migration Services\n\nDear [Vendor Name],\n\nI am writing on behalf of [Company Name] to formally request a detailed proposal for cloud migration services. We are in the process of evaluating qualified vendors and believe your organisation may be well positioned to meet our requirements.\n\nThe scope of this engagement involves migrating the systems and data for approximately 200 employees. Our project budget is $50,000, and we require the migration to be completed in full by August 31st.\n\nWe ask that your proposal address the following:\n\n- A proposed project timeline with key milestones\n- A detailed pricing breakdown within our stated budget\n- Your approach to post-migration support and issue resolution\n\nPlease submit your proposal no later than [proposal deadline]. We look forward to reviewing your submission and are happy to arrange a call to clarify any requirements in advance.\n\nThank you for your time and consideration.\n\nKind regards,\n[Your Name]\n[Your Title] | [Your Company]"
+    },
+    {
+      "id": 3,
+      "name": "Job Application Follow-Up",
+      "intent": "Follow up on a submitted job application for a Senior Data Scientist position",
+      "key_facts": [
+        "The application was submitted two weeks ago",
+        "The position is Senior Data Scientist at TechNova Inc.",
+        "The applicant recently updated their LinkedIn profile with a new ML portfolio project",
+        "The applicant is available for an interview at any time convenient for the hiring team"
+      ],
+      "tone": "Enthusiastic yet professional",
+      "human_reference_email": "Subject: Following Up – Senior Data Scientist Application\n\nDear Hiring Team,\n\nI hope this message finds you well. I am writing to follow up on my application for the Senior Data Scientist position at TechNova Inc., which I submitted approximately two weeks ago.\n\nI remain genuinely excited about this opportunity and the innovative work your team is doing. Since submitting my application, I have also added a new machine learning portfolio project to my LinkedIn profile, which I believe further demonstrates my passion for applied ML and the value I could bring to your organisation.\n\nI would be delighted to discuss my background and experience at your earliest convenience and am completely flexible regarding interview timing — please feel free to suggest whatever works best for your team.\n\nThank you very much for your time and consideration. I look forward to the possibility of connecting with you.\n\nWarm regards,\n[Your Name]\n[LinkedIn Profile URL] | [Phone Number]"
+    },
+    {
+      "id": 4,
+      "name": "Customer Complaint Response",
+      "intent": "Respond to a customer complaint about a delayed order delivery",
+      "key_facts": [
+        "The customer's order number is #4521",
+        "The delivery was delayed by three days beyond the promised date",
+        "The delay was caused by an unexpected supply chain disruption",
+        "As goodwill, we are offering a 15% discount on their next order"
+      ],
+      "tone": "Empathetic and apologetic",
+      "human_reference_email": "Subject: Sincere Apology Regarding Your Order #4521 – Delayed Delivery\n\nDear [Customer Name],\n\nI want to begin by sincerely apologising for the delay in delivering your order #4521. I completely understand how frustrating it is to wait beyond the expected delivery date, and I am truly sorry for the inconvenience this has caused.\n\nUnfortunately, an unexpected disruption in our supply chain led to a three-day delay in fulfilment. While this was beyond our direct control, it is never an excuse for falling short of the experience you deserve.\n\nAs a token of our genuine apology, we would like to offer you a 15% discount on your next order with us. This discount will be automatically applied — no code is necessary.\n\nWe value your trust and your continued support enormously, and we are committed to making this right. If there is anything else I can do to assist you, please do not hesitate to reach out directly.\n\nOnce again, I am truly sorry for the inconvenience.\n\nWarm regards,\n[Your Name]\nCustomer Experience Team | [Company Name]"
+    },
+    {
+      "id": 5,
+      "name": "Weekly Project Status Update",
+      "intent": "Send a weekly project status update to executive stakeholders",
+      "key_facts": [
+        "The project is currently 65% complete and remains on schedule",
+        "Two risks have been identified: vendor dependency and resource availability",
+        "The next major milestone is User Acceptance Testing (UAT), scheduled to begin June 30th",
+        "No budget overruns have occurred to date"
+      ],
+      "tone": "Formal and structured",
+      "human_reference_email": "Subject: Weekly Status Update – Project [Name] | Week Ending June 19th\n\nDear Stakeholders,\n\nPlease find below the weekly status update for Project [Name] for the period ending June 19th.\n\nOVERALL STATUS: ON TRACK\n\nPROGRESS SUMMARY\nThe project has reached 65% completion and continues to track on schedule. No budget overruns have been recorded to date.\n\nRISKS AND ISSUES\nTwo risks have been identified and are currently being monitored:\n1. Vendor Dependency – We are tracking the delivery timeline of a key external vendor. Mitigation plans are in place.\n2. Resource Availability – A potential capacity constraint within the team has been flagged. We are assessing contingency options.\n\nNEXT MILESTONE\nUser Acceptance Testing (UAT) is scheduled to commence on June 30th. All preparation activities are on track to meet this date.\n\nI will continue to provide weekly updates and will flag any significant changes as they arise. Please feel free to contact me directly with any questions.\n\nBest regards,\n[Your Name]\nProject Manager | [Company Name]"
+    },
+    {
+      "id": 6,
+      "name": "SaaS Product Sales Outreach",
+      "intent": "Cold outreach to a potential client introducing a SaaS productivity tool",
+      "key_facts": [
+        "The product is called FlowDesk and helps teams reduce operational costs by 30%",
+        "Over 500 companies currently use FlowDesk",
+        "FlowDesk was named the Top Productivity Tool of 2025 by TechRadar",
+        "A free 14-day trial is available with no credit card required"
+      ],
+      "tone": "Casual and friendly",
+      "human_reference_email": "Subject: Hey [Name] — Cut Your Team's Costs by 30% (Free Trial Inside)\n\nHi [Name],\n\nHope you're having a great week! I'll keep this quick — I think you're really going to like what I'm about to share.\n\nI'm [Your Name] from FlowDesk, the productivity platform that's already helping over 500 companies slash their operational costs by up to 30%. We were even named the Top Productivity Tool of 2025 by TechRadar — pretty exciting stuff!\n\nWhat makes us different? We focus on cutting the busywork so your team can focus on the work that actually matters.\n\nThe best part: you can try FlowDesk completely free for 14 days — no credit card, no strings attached. Just log in and see for yourself.\n\nWould you be up for a quick 15-minute chat this week? I'd love to show you how it works and see if it might be a good fit.\n\nLooking forward to connecting!\n\nCheers,\n[Your Name]\n[Your Title] | FlowDesk"
+    },
+    {
+      "id": 7,
+      "name": "Project Kick-Off Meeting Request",
+      "intent": "Schedule a kick-off meeting for a newly approved internal project",
+      "key_facts": [
+        "The project is named Project Phoenix",
+        "The core team consists of 5 members across product, engineering, and design",
+        "A 90-minute kick-off session is required",
+        "Availability is Monday through Wednesday of next week, preferably in the morning"
+      ],
+      "tone": "Professional and collaborative",
+      "human_reference_email": "Subject: Project Phoenix – Kick-Off Meeting Request\n\nDear Team,\n\nI am delighted to announce that Project Phoenix has been formally approved, and I would like to bring our core team together for a kick-off meeting at the earliest opportunity.\n\nThe meeting will involve all five members of the project team, spanning product, engineering, and design, and will run for approximately 90 minutes. I propose we hold this session on Monday, Tuesday, or Wednesday of next week, with a preference for a morning time slot.\n\nI will circulate a detailed agenda ahead of the meeting covering project objectives, roles and responsibilities, initial timelines, and our communication cadence going forward.\n\nCould you please reply with your availability for the proposed dates so I can confirm a time that works for everyone? I look forward to kicking off what I am confident will be a highly impactful project.\n\nBest regards,\n[Your Name]\nProject Lead | [Company Name]"
+    },
+    {
+      "id": 8,
+      "name": "Annual Performance Review Notification",
+      "intent": "Notify an employee of their upcoming annual performance review",
+      "key_facts": [
+        "The performance review is scheduled for June 25th",
+        "The review will cover goals and achievements from the past year",
+        "The employee's manager conducting the review is Sarah Johnson",
+        "The employee should bring a completed self-assessment form to the session"
+      ],
+      "tone": "Formal and encouraging",
+      "human_reference_email": "Subject: Annual Performance Review Scheduled – June 25th\n\nDear [Employee Name],\n\nI am writing to inform you that your annual performance review has been scheduled for June 25th. This is an important opportunity for us to reflect on your contributions, celebrate your achievements, and collaboratively plan your continued growth within the organisation.\n\nYour review will be conducted by your manager, Sarah Johnson, and will cover your goals, performance, and key accomplishments over the past year.\n\nTo make the most of this session, we kindly ask that you bring a completed self-assessment form to the meeting. This will help structure a productive and meaningful conversation. If you have not yet received the self-assessment template, please reach out to the HR team and we will send it over promptly.\n\nIf the scheduled date presents any difficulty, please let us know as soon as possible so we can make alternative arrangements.\n\nWe value your hard work and look forward to a rewarding conversation on the 25th.\n\nWarm regards,\n[Your Name]\nHuman Resources | [Company Name]"
+    },
+    {
+      "id": 9,
+      "name": "Strategic Partnership Proposal",
+      "intent": "Propose a strategic co-marketing partnership to a technology company",
+      "key_facts": [
+        "Our platform has over 1 million active users",
+        "Both companies share a highly overlapping target audience of mid-market B2B SaaS buyers",
+        "The proposal includes a co-marketing initiative and a revenue-sharing model",
+        "We propose beginning with a 3-month pilot programme to validate the partnership"
+      ],
+      "tone": "Persuasive and formal",
+      "human_reference_email": "Subject: Strategic Partnership Proposal – Co-Marketing & Revenue-Share Initiative\n\nDear [Recipient Name],\n\nI hope this message finds you well. I am reaching out to explore a strategic partnership opportunity that I believe holds significant mutual value for both of our organisations.\n\nOur platform currently serves over one million active users, the overwhelming majority of whom are mid-market B2B SaaS buyers — an audience that closely mirrors your own customer base. This alignment presents a compelling opportunity to collaborate in a way that drives meaningful growth for both parties.\n\nWe are proposing a co-marketing initiative combined with a revenue-sharing model. Under this arrangement, we would jointly promote complementary offerings to our shared audience, creating incremental value without significant additional investment on either side.\n\nTo ensure both parties can validate the model before any long-term commitment, we suggest launching with a structured three-month pilot programme. This pilot would allow us to measure performance, refine the approach, and build a solid foundation for a sustainable long-term partnership.\n\nI would welcome the opportunity to schedule a call to discuss this proposal in greater detail. Please let me know your availability and I will gladly arrange a meeting at your convenience.\n\nI look forward to the possibility of building something exceptional together.\n\nYours sincerely,\n[Your Name]\n[Your Title] | [Your Company]"
+    },
+    {
+      "id": 10,
+      "name": "Urgent Deadline Extension Request",
+      "intent": "Request a one-week extension on a critical project deadline",
+      "key_facts": [
+        "The original project deadline is June 20th",
+        "We are requesting an extension to June 27th — one additional week",
+        "The delay was caused by the unexpected illness of a key team member",
+        "All other project milestones have been met on time"
+      ],
+      "tone": "Urgent but respectful and professional",
+      "human_reference_email": "Subject: Urgent Request – One-Week Deadline Extension for [Project Name]\n\nDear [Recipient Name],\n\nI am writing to respectfully request a one-week extension on the deadline for [Project Name], currently set for June 20th. I recognise the urgency of this request and wanted to bring it to your attention immediately.\n\nUnfortunately, a key team member has suffered an unexpected illness that has directly impacted our capacity during a critical phase of delivery. Despite all other project milestones having been completed on schedule, this unforeseen circumstance has created a gap we are unable to close by the original date without compromising the quality of our deliverable.\n\nWe are requesting an extended deadline of June 27th — one additional week — which we are confident will allow us to deliver the project to the standard you expect and deserve.\n\nI sincerely appreciate your understanding and flexibility, and I am happy to arrange a call to discuss further should that be helpful.\n\nThank you for your consideration.\n\nRespectfully,\n[Your Name]\n[Your Title] | [Your Company]"
+    }
+  ]
+}
