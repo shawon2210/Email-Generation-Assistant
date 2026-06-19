@@ -1,7 +1,7 @@
 # Comparative Analysis Report
 ## Email Generation Assistant — Model A vs. Model B
 
-**Generated:** 2026-06-19 14:04:27
+**Generated:** 2026-06-19 14:32:11
 **Evaluation Scenarios:** 10
 
 ---
@@ -10,7 +10,7 @@
 
 | | Model A ✦ | Model B |
 |---|---|---|
-| **Model ID** | `gemini-2.0-flash` | `gemini-2.0-flash` |
+| **Model ID** | `openrouter/auto` | `openrouter/auto` |
 | **Strategy** | Advanced Prompt (Role-Playing + Few-Shot + Chain-of-Thought) | Baseline Zero-Shot (No system role, no examples, no CoT) |
 
 ---
@@ -19,16 +19,16 @@
 
 | # | Scenario | A-FRS | A-TAS | A-FPS | **A-Comp** | B-FRS | B-TAS | B-FPS | **B-Comp** | Winner |
 |---|---|---|---|---|---|---|---|---|---|---|
-| 1 | Post-Meeting Strategy Follow-U | 0.9333 | 0.8600 | 0.9200 | **0.9044** | 0.7333 | 0.6800 | 0.8000 | **0.7378** | **A** |
-| 2 | Vendor Proposal Request | 0.9500 | 0.9000 | 0.9400 | **0.9300** | 0.7500 | 0.7200 | 0.8200 | **0.7633** | **A** |
-| 3 | Job Application Follow-Up | 0.9000 | 0.8800 | 0.9000 | **0.8933** | 0.7000 | 0.6400 | 0.7800 | **0.7067** | **A** |
-| 4 | Customer Complaint Response | 0.9500 | 0.9200 | 0.9200 | **0.9300** | 0.6750 | 0.6000 | 0.7600 | **0.6783** | **A** |
-| 5 | Weekly Project Status Update | 0.9750 | 0.9400 | 0.9600 | **0.9583** | 0.8000 | 0.7600 | 0.8400 | **0.8000** | **A** |
-| 6 | SaaS Product Sales Outreach | 0.9250 | 0.9000 | 0.8800 | **0.9017** | 0.6500 | 0.5800 | 0.7400 | **0.6567** | **A** |
-| 7 | Project Kick-Off Meeting Reque | 0.9500 | 0.9200 | 0.9400 | **0.9367** | 0.7750 | 0.7400 | 0.8200 | **0.7783** | **A** |
-| 8 | Annual Performance Review Noti | 0.9750 | 0.9400 | 0.9600 | **0.9583** | 0.8000 | 0.7800 | 0.8600 | **0.8133** | **A** |
-| 9 | Strategic Partnership Proposal | 0.9250 | 0.9000 | 0.9200 | **0.9150** | 0.7250 | 0.6600 | 0.8000 | **0.7283** | **A** |
-| 10 | Urgent Deadline Extension Requ | 0.9750 | 0.9200 | 0.9400 | **0.9450** | 0.7500 | 0.7000 | 0.8200 | **0.7567** | **A** |
+| 1 | Post-Meeting Strategy Follow-U | 1.0000 | 0.9200 | 0.9600 | **0.9600** | 0.8750 | 0.7200 | 0.8200 | **0.8050** | **A** |
+| 2 | Vendor Proposal Request | 1.0000 | 0.9400 | 0.9600 | **0.9667** | 0.7500 | 0.7000 | 0.7800 | **0.7433** | **A** |
+| 3 | Job Application Follow-Up | 1.0000 | 0.9000 | 0.9200 | **0.9400** | 0.7500 | 0.6400 | 0.7600 | **0.7167** | **A** |
+| 4 | Customer Complaint Response | 1.0000 | 0.9600 | 0.9400 | **0.9667** | 0.7500 | 0.6000 | 0.7400 | **0.6967** | **A** |
+| 5 | Weekly Project Status Update | 1.0000 | 0.9600 | 0.9800 | **0.9800** | 0.8750 | 0.7600 | 0.8400 | **0.8250** | **A** |
+| 6 | SaaS Product Sales Outreach | 1.0000 | 0.9200 | 0.9000 | **0.9400** | 0.7500 | 0.5600 | 0.7200 | **0.6767** | **A** |
+| 7 | Project Kick-Off Meeting Reque | 1.0000 | 0.9400 | 0.9600 | **0.9667** | 0.8750 | 0.7400 | 0.8200 | **0.8117** | **A** |
+| 8 | Annual Performance Review Noti | 1.0000 | 0.9600 | 0.9800 | **0.9800** | 0.8750 | 0.7800 | 0.8600 | **0.8383** | **A** |
+| 9 | Strategic Partnership Proposal | 1.0000 | 0.9200 | 0.9400 | **0.9533** | 0.7500 | 0.6800 | 0.8000 | **0.7433** | **A** |
+| 10 | Urgent Deadline Extension Requ | 1.0000 | 0.9400 | 0.9600 | **0.9667** | 0.8750 | 0.7200 | 0.8200 | **0.8050** | **A** |
 
 ---
 
@@ -36,10 +36,10 @@
 
 | Metric | Model A | Model B | Delta (A−B) | Winner |
 |---|---|---|---|---|
-| **Fact Recall Score (FRS)** | 0.9458 | 0.7358 | +0.2100 | **A** |
-| **Tone Accuracy Score (TAS)** | 0.9080 | 0.6860 | +0.2220 | **A** |
-| **Fluency & Professionalism (FPS)** | 0.9280 | 0.8040 | +0.1240 | **A** |
-| **COMPOSITE AVERAGE** | **0.9273** | **0.7419** | **+0.1854** | **A** |
+| **Fact Recall Score (FRS)** | 1.0000 | 0.8125 | +0.1875 | **A** |
+| **Tone Accuracy Score (TAS)** | 0.9360 | 0.6900 | +0.2460 | **A** |
+| **Fluency & Professionalism (FPS)** | 0.9500 | 0.7960 | +0.1540 | **A** |
+| **COMPOSITE AVERAGE** | **0.9620** | **0.7662** | **+0.1958** | **A** |
 
 **Scenario wins:** Model A — 10/10 | Model B — 0/10
 
@@ -51,13 +51,13 @@
 
 **Model A (Advanced Prompt) performed better across all three custom metrics.**
 
-- **Fact Recall (FRS):** Model A scored **0.9458** vs. Model B's **0.7358** (delta: +0.2100).
-- **Tone Accuracy (TAS):** Model A scored **0.9080** vs. Model B's **0.6860** (delta: +0.2220).
-- **Fluency & Professionalism (FPS):** Model A scored **0.9280** vs. Model B's **0.8040** (delta: +0.1240).
+- **Fact Recall (FRS):** Model A scored **1.0000** vs. Model B's **0.8125** (delta: +0.1875).
+- **Tone Accuracy (TAS):** Model A scored **0.9360** vs. Model B's **0.6900** (delta: +0.2460).
+- **Fluency & Professionalism (FPS):** Model A scored **0.9500** vs. Model B's **0.7960** (delta: +0.1540).
 
 ### Q2: What was the biggest failure mode of the lower-performing model?
 
-**Model B (Baseline) showed its biggest weakness in Tone Accuracy Score (TAS: 0.6860).**
+**Model B (Baseline) showed its biggest weakness in Tone Accuracy Score (TAS: 0.6900).**
 
 Without a structured persona or exemplar emails, Model B exhibited:
 1. **Fact Omission** — No mechanism to systematically plan where facts belong
@@ -66,23 +66,23 @@ Without a structured persona or exemplar emails, Model B exhibited:
 
 ### Q3: Which model do you recommend for production?
 
-## ✅ Recommendation: Model A — gemini-2.0-flash with Advanced Prompt Engineering
+## ✅ Recommendation: Model A — Advanced Prompt Engineering
 
 **Model A is the clear recommendation for production deployment.**
 
 | Criterion | Model A | Model B | Decision |
 |---|---|---|---|
-| Composite Score | 0.9273 | 0.7419 | ✅ Model A |
-| Fact Coverage | 0.9458 | 0.7358 | ✅ Model A |
-| Tone Precision | 0.9080 | 0.6860 | ✅ Model A |
-| Professionalism | 0.9280 | 0.8040 | ✅ Model A |
+| Composite Score | 0.9620 | 0.7662 | ✅ Model A |
+| Fact Coverage | 1.0000 | 0.8125 | ✅ Model A |
+| Tone Precision | 0.9360 | 0.6900 | ✅ Model A |
+| Professionalism | 0.9500 | 0.7960 | ✅ Model A |
 | Scenario Wins | 10/10 | 0/10 | ✅ Model A |
 
 **Key justifications:**
 1. **Reliability at scale** — CoT forces systematic fact integration
-2. **Tone controllability** — +0.2220 TAS advantage
-3. **No additional model cost** — Same Gemini API pricing tier
+2. **Tone controllability** — +0.2460 TAS advantage
+3. **No additional model cost** — Same API endpoint for both strategies
 4. **Prompt engineering scales** — Iterate without retraining
 
 ---
-*Report generated by Email Generation Assistant Evaluation Pipeline v1.0*
+*Report generated by Email Generation Assistant v1.0*

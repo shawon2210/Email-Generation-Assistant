@@ -10,14 +10,12 @@ Runs the full Email Generation Assistant evaluation pipeline:
 
 Usage
 -----
-  # Full evaluation (requires GOOGLE_API_KEY in .env)
+
+  # Full evaluation (requires OPENROUTER_API_KEY in .env)
   python run_evaluation.py
 
   # Dry-run: validate imports and scenario loading without API calls
   python run_evaluation.py --dry-run
-
-  # Custom scenarios file or output directory
-  python run_evaluation.py --scenarios data/scenarios.json --output data/results
 """
 
 import argparse
@@ -56,7 +54,6 @@ def dry_run(scenarios_path: str) -> None:
     print("  DRY-RUN MODE — No API calls will be made")
     print("═" * 60)
 
-    # Check scenarios file
     path = Path(scenarios_path)
     if not path.exists():
         print(f"  ✗ Scenarios file not found: {scenarios_path}")
@@ -72,9 +69,8 @@ def dry_run(scenarios_path: str) -> None:
             f"Scenario {s.get('id')} missing required fields"
         assert len(s["key_facts"]) >= 3, \
             f"Scenario {s.get('id')} should have at least 3 key facts"
-    print(f"  ✓ All {len(scenarios)} scenarios validated (intent, key_facts, tone present)")
+    print(f"  ✓ All {len(scenarios)} scenarios validated")
 
-    # Check imports
     try:
         from src.prompts import build_advanced_prompt, build_simple_prompt, SYSTEM_PROMPT
         print("  ✓ src.prompts imported successfully")
@@ -101,30 +97,29 @@ def dry_run(scenarios_path: str) -> None:
         sys.exit(1)
 
     try:
-        from google import genai
-        print("  ✓ google-genai available")
+        from openai import OpenAI
+        print("  ✓ openai (OpenRouter client) available")
     except ImportError:
-        print("  ✗ google-genai not installed — run: pip install google-genai")
+        print("  ✗ openai not installed — run: pip install openai")
         sys.exit(1)
 
-    # Check API key
     import os
     from dotenv import load_dotenv
     load_dotenv(override=True)
-    api_key = os.getenv("GOOGLE_API_KEY")
+    api_key = os.getenv("OPENROUTER_API_KEY") or os.getenv("GOOGLE_API_KEY")
     if api_key:
-        masked = api_key[:6] + "…" + api_key[-4:]
-        print(f"  ✓ GOOGLE_API_KEY found: {masked}")
+        masked = api_key[:10] + "…" + api_key[-4:]
+        print(f"  ✓ API key found: {masked}")
     else:
-        print("  ✗ GOOGLE_API_KEY not set — copy .env.example to .env and add your key")
+        print("  ✗ No API key found — add OPENROUTER_API_KEY to .env")
         sys.exit(1)
 
     # Prompt preview
     sample = scenarios[0]
     prompt_a = build_advanced_prompt(sample["intent"], sample["key_facts"], sample["tone"])
     prompt_b = build_simple_prompt(sample["intent"], sample["key_facts"], sample["tone"])
-    print(f"\n  ── Model A Prompt Preview (first 300 chars) ──")
-    print(f"  {prompt_a[:300].replace(chr(10), chr(10)+'  ')}…")
+    print(f"\n  ── Model A Prompt Preview (first 200 chars) ──")
+    print(f"  {prompt_a[:200].replace(chr(10), chr(10)+'  ')}…")
     print(f"\n  ── Model B Prompt Preview ──")
     print(f"  {prompt_b}")
 
@@ -143,13 +138,11 @@ def main() -> None:
     print("  EMAIL GENERATION ASSISTANT — FULL EVALUATION")
     print("═" * 60)
     print("  This will:")
-    print("   • Generate 10 × 2 = 20 emails via Gemini API")
+    print("   • Generate 10 × 2 = 20 emails via OpenRouter API")
     print("   • Run 3 metrics × 20 emails = 60 metric computations")
     print("   • Save CSV, JSON, and Markdown reports")
-    print("  Estimated time: ~5–8 minutes (API rate-limit delays included)")
     print("═" * 60)
 
-    # ── Run evaluation ─────────────────────────────────────────────────────
     from src.evaluator import run_evaluation
     results = run_evaluation(scenarios_path=args.scenarios)
 
@@ -157,11 +150,9 @@ def main() -> None:
         print("No results returned. Exiting.")
         sys.exit(1)
 
-    # ── Save reports ───────────────────────────────────────────────────────
     from src.report_generator import save_all
     paths = save_all(results, output_dir=args.output)
 
-    # ── Final summary ──────────────────────────────────────────────────────
     import statistics
     comp_a = round(statistics.mean(r["model_a"]["composite_score"] for r in results), 4)
     comp_b = round(statistics.mean(r["model_b"]["composite_score"] for r in results), 4)
@@ -173,8 +164,7 @@ def main() -> None:
     print(f"  Model A composite avg : {comp_a:.4f}")
     print(f"  Model B composite avg : {comp_b:.4f}")
     print(f"  Recommended model     : {winner}")
-    print()
-    print("  Output files:")
+    print(f"\n  Output files:")
     for label, p in paths.items():
         print(f"    [{label:25s}] {p}")
     print("═" * 60 + "\n")

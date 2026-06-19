@@ -3,19 +3,18 @@ Email Generator Module
 ======================
 Supports two generation strategies:
 
-  Model A  –  gemini-2.0-flash  +  Advanced Prompt
+  Model A  —  openrouter/auto  +  Advanced Prompt
               (Role-Playing system persona + Few-Shot examples + Chain-of-Thought)
 
-  Model B  –  gemini-2.0-flash-lite  +  Zero-Shot Baseline
+  Model B  —  openrouter/auto  +  Zero-Shot Baseline
               (No role, no examples, no CoT – plain single instruction)
 
-Uses the current google-genai SDK (google.genai).
+Uses the OpenAI-compatible API via OpenRouter.
 """
 
 import re
 import time
-from google import genai
-from google.genai import types
+from openai import OpenAI
 
 from src.prompts import (
     SYSTEM_PROMPT,
@@ -23,12 +22,12 @@ from src.prompts import (
     build_simple_prompt,
 )
 
-# ── Model identifiers ──────────────────────────────────────────────────────
-MODEL_A_ID = "gemini-2.0-flash"
-MODEL_B_ID = "gemini-2.0-flash"  # Use same model for both to reduce rate limit pressure
+# ── Model configuration ─────────────────────────────────────────────────────
+MODEL_A_ID = "openrouter/auto"
+MODEL_B_ID = "openrouter/auto"
 
 _MAX_RETRIES = 5
-_RETRY_DELAY = 15  # seconds
+_RETRY_DELAY = 5  # seconds
 
 
 class EmailGenerator:
@@ -36,27 +35,19 @@ class EmailGenerator:
     Generates professional emails using two distinct model/prompt strategies.
     """
 
-    def __init__(self, api_key: str) -> None:
+    def __init__(self, api_key: str, base_url: str = "https://openrouter.ai/api/v1") -> None:
         """
-        Initialise the generator with a google-genai client.
+        Initialise the generator with an OpenAI-compatible client.
 
         Args:
-            api_key: Google Generative AI API key.
+            api_key: OpenRouter API key.
+            base_url: OpenRouter API base URL.
         """
-        self._client = genai.Client(api_key=api_key)
+        self._client = OpenAI(api_key=api_key, base_url=base_url)
 
         # Generation configs
-        self._config_a = types.GenerateContentConfig(
-            system_instruction=SYSTEM_PROMPT,
-            temperature=0.7,
-            top_p=0.95,
-            max_output_tokens=1024,
-        )
-        self._config_b = types.GenerateContentConfig(
-            temperature=0.7,
-            top_p=0.95,
-            max_output_tokens=1024,
-        )
+        self._config_a = {"temperature": 0.3, "max_tokens": 1024}
+        self._config_b = {"temperature": 0.3, "max_tokens": 1024}
 
     # ── Public API ─────────────────────────────────────────────────────────
 
@@ -105,41 +96,41 @@ class EmailGenerator:
         self,
         model_id: str,
         prompt: str,
-        config: types.GenerateContentConfig,
+        config: dict,
     ) -> str:
-        """Call the model with rate-limit-aware retry on transient and 429 errors."""
-        max_retries = 5
-        for attempt in range(1, max_retries + 1):
+        """Call the model with retry on transient errors."""
+        for attempt in range(1, _MAX_RETRIES + 1):
             try:
-                response = self._client.models.generate_content(
+                # Build messages: system prompt + user prompt
+                messages = []
+                if "system_instruction" in config:
+                    messages.append({"role": "system", "content": config["system_instruction"]})
+                messages.append({"role": "user", "content": prompt})
+
+                response = self._client.chat.completions.create(
                     model=model_id,
-                    contents=prompt,
-                    config=config,
+                    messages=messages,
+                    temperature=config.get("temperature", 0.3),
+                    max_tokens=config.get("max_tokens", 1024),
                 )
-                return response.text.strip()
+                return (response.choices[0].message.content or "").strip()
             except Exception as exc:
                 exc_str = str(exc)
-                if any(kwd in exc_str for kwd in ["API key expired", "API_KEY_INVALID", "API key not valid"]):
-                    raise ValueError(f"Invalid or expired GOOGLE_API_KEY: {exc}")
-                
+                if any(kwd in exc_str for kwd in ["API key expired", "API_KEY_INVALID", "Unauthorized"]):
+                    raise ValueError(f"Invalid API key: {exc}")
+
                 is_rate_limit = "429" in exc_str or "RESOURCE_EXHAUSTED" in exc_str
-                
-                if attempt == max_retries:
-                    return (
-                        f"[GENERATION ERROR after {max_retries} attempts: {exc}]"
-                    )
-                
+
+                if attempt == _MAX_RETRIES:
+                    return f"[GENERATION ERROR after {_MAX_RETRIES} attempts: {exc}]"
+
                 if is_rate_limit:
-                    match = re.search(r"retry in ([\d.]+)s", exc_str, re.IGNORECASE)
-                    if match:
-                        wait = float(match.group(1)) + 5.0
-                    else:
-                        wait = 120.0
-                    print(f"\n    ⚠ Rate limit hit. Waiting {wait:.2f}s before retry...")
+                    wait = 30.0
+                    print(f"\n    ⚠ Rate limit hit. Waiting {wait:.0f}s before retry...")
                 else:
-                    wait = 15.0 * (2 ** (attempt - 1))
-                    print(f"\n    ⚠ API error (attempt {attempt}/{max_retries}): {exc}")
-                    print(f"    Retrying in {wait}s …")
-                
+                    wait = _RETRY_DELAY * (2 ** (attempt - 1))
+                    print(f"\n    ⚠ API error (attempt {attempt}/{_MAX_RETRIES}): {exc}")
+                    print(f"    Retrying in {wait:.0f}s ...")
+
                 time.sleep(wait)
         return "[GENERATION ERROR]"

@@ -6,20 +6,20 @@ Fluency & Professionalism Score (FPS),Measures grammar and professional quality,
 
 RAW EVALUATION SCORES
 Scenario ID,Scenario Name,Intent,Tone,Model A,A-FRS,A-TAS,A-FPS,A-Composite,Model B,B-FRS,B-TAS,B-FPS,B-Composite,Winner
-1,Post-Meeting Strategy Follow-Up,Follow up after a product strategy meeting to summarise deci,Formal,gemini-2.0-flash,0.9333,0.86,0.92,0.9044,gemini-2.0-flash,0.7333,0.68,0.8,0.7378,Model A
-2,Vendor Proposal Request,Request a detailed proposal from a vendor for cloud migratio,Professional and direct,gemini-2.0-flash,0.95,0.9,0.94,0.93,gemini-2.0-flash,0.75,0.72,0.82,0.7633,Model A
-3,Job Application Follow-Up,Follow up on a submitted job application for a Senior Data S,Enthusiastic yet professional,gemini-2.0-flash,0.9,0.88,0.9,0.8933,gemini-2.0-flash,0.7,0.64,0.78,0.7067,Model A
-4,Customer Complaint Response,Respond to a customer complaint about a delayed order delive,Empathetic and apologetic,gemini-2.0-flash,0.95,0.92,0.92,0.93,gemini-2.0-flash,0.675,0.6,0.76,0.6783,Model A
-5,Weekly Project Status Update,Send a weekly project status update to executive stakeholder,Formal and structured,gemini-2.0-flash,0.975,0.94,0.96,0.9583,gemini-2.0-flash,0.8,0.76,0.84,0.8,Model A
-6,SaaS Product Sales Outreach,Cold outreach to a potential client introducing a SaaS produ,Casual and friendly,gemini-2.0-flash,0.925,0.9,0.88,0.9017,gemini-2.0-flash,0.65,0.58,0.74,0.6567,Model A
-7,Project Kick-Off Meeting Request,Schedule a kick-off meeting for a newly approved internal pr,Professional and collaborative,gemini-2.0-flash,0.95,0.92,0.94,0.9367,gemini-2.0-flash,0.775,0.74,0.82,0.7783,Model A
-8,Annual Performance Review Notification,Notify an employee of their upcoming annual performance revi,Formal and encouraging,gemini-2.0-flash,0.975,0.94,0.96,0.9583,gemini-2.0-flash,0.8,0.78,0.86,0.8133,Model A
-9,Strategic Partnership Proposal,Propose a strategic co-marketing partnership to a technology,Persuasive and formal,gemini-2.0-flash,0.925,0.9,0.92,0.915,gemini-2.0-flash,0.725,0.66,0.8,0.7283,Model A
-10,Urgent Deadline Extension Request,Request a one-week extension on a critical project deadline,Urgent but respectful and professional,gemini-2.0-flash,0.975,0.92,0.94,0.945,gemini-2.0-flash,0.75,0.7,0.82,0.7567,Model A
+1,Post-Meeting Strategy Follow-Up,Follow up after a product strategy meeting to summarise deci,Formal,openrouter/auto,1.0,0.92,0.96,0.96,openrouter/auto,0.875,0.72,0.82,0.805,Model A
+2,Vendor Proposal Request,Request a detailed proposal from a vendor for cloud migratio,Professional and direct,openrouter/auto,1.0,0.94,0.96,0.9667,openrouter/auto,0.75,0.7,0.78,0.7433,Model A
+3,Job Application Follow-Up,Follow up on a submitted job application for a Senior Data S,Enthusiastic yet professional,openrouter/auto,1.0,0.9,0.92,0.94,openrouter/auto,0.75,0.64,0.76,0.7167,Model A
+4,Customer Complaint Response,Respond to a customer complaint about a delayed order delive,Empathetic and apologetic,openrouter/auto,1.0,0.96,0.94,0.9667,openrouter/auto,0.75,0.6,0.74,0.6967,Model A
+5,Weekly Project Status Update,Send a weekly project status update to executive stakeholder,Formal and structured,openrouter/auto,1.0,0.96,0.98,0.98,openrouter/auto,0.875,0.76,0.84,0.825,Model A
+6,SaaS Product Sales Outreach,Cold outreach to a potential client introducing a SaaS produ,Casual and friendly,openrouter/auto,1.0,0.92,0.9,0.94,openrouter/auto,0.75,0.56,0.72,0.6767,Model A
+7,Project Kick-Off Meeting Request,Schedule a kick-off meeting for a newly approved internal pr,Professional and collaborative,openrouter/auto,1.0,0.94,0.96,0.9667,openrouter/auto,0.875,0.74,0.82,0.8117,Model A
+8,Annual Performance Review Notification,Notify an employee of their upcoming annual performance revi,Formal and encouraging,openrouter/auto,1.0,0.96,0.98,0.98,openrouter/auto,0.875,0.78,0.86,0.8383,Model A
+9,Strategic Partnership Proposal,Propose a strategic co-marketing partnership to a technology,Persuasive and formal,openrouter/auto,1.0,0.92,0.94,0.9533,openrouter/auto,0.75,0.68,0.8,0.7433,Model A
+10,Urgent Deadline Extension Request,Request a one-week extension on a critical project deadline,Urgent but respectful and professional,openrouter/auto,1.0,0.94,0.96,0.9667,openrouter/auto,0.875,0.72,0.82,0.805,Model A
 
 AGGREGATE SUMMARY
 Metric,Model A Average,Model B Average,Better Model
-Fact Recall Score (FRS),0.9458,0.7358,A
-Tone Accuracy Score (TAS),0.908,0.686,A
-Fluency & Professionalism (FPS),0.928,0.804,A
-COMPOSITE AVERAGE,0.9273,0.7419,A
+Fact Recall Score (FRS),1.0,0.8125,A
+Tone Accuracy Score (TAS),0.936,0.69,A
+Fluency & Professionalism (FPS),0.95,0.796,A
+COMPOSITE AVERAGE,0.962,0.7662,A

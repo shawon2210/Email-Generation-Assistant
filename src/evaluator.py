@@ -13,7 +13,7 @@ import time
 import os
 from pathlib import Path
 
-from google import genai
+from openai import OpenAI
 from dotenv import load_dotenv
 
 from src.generator import EmailGenerator
@@ -24,8 +24,8 @@ from src.metrics import (
     compute_fluency_professionalism_score,
 )
 
-_INTER_CALL_DELAY     = 5    # seconds between API calls (rate-limit buffer)
-_INTER_SCENARIO_DELAY = 10   # seconds between scenarios
+_INTER_CALL_DELAY     = 2    # seconds between API calls
+_INTER_SCENARIO_DELAY = 3    # seconds between scenarios
 
 
 def run_evaluation(scenarios_path: str = "data/scenarios.json") -> list:
@@ -40,15 +40,16 @@ def run_evaluation(scenarios_path: str = "data/scenarios.json") -> list:
     """
     # ── Load environment & configure API ──────────────────────────────────
     load_dotenv(override=True)
-    api_key = os.getenv("GOOGLE_API_KEY")
+    api_key = os.getenv("OPENROUTER_API_KEY") or os.getenv("GOOGLE_API_KEY")
     if not api_key:
         raise EnvironmentError(
-            "GOOGLE_API_KEY is not set. "
+            "OPENROUTER_API_KEY is not set. "
             "Copy .env.example to .env and add your key."
         )
 
-    judge_client = make_judge_client(api_key)
-    generator    = EmailGenerator(api_key)
+    base_url = "https://openrouter.ai/api/v1"
+    judge_client = make_judge_client(api_key, base_url)
+    generator    = EmailGenerator(api_key, base_url)
 
     # ── Load scenarios ─────────────────────────────────────────────────────
     with open(scenarios_path, "r", encoding="utf-8") as fh:
