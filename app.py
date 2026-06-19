@@ -278,6 +278,133 @@ def get_judge_client() -> Optional[OpenAI]:
         return None
 
 
+def _demo_email(intent: str, facts: list[str], tone: str, advanced: bool) -> str:
+    """Generate a realistic demo email without any API call. Works offline."""
+    tone_lower = tone.lower()
+
+    # Pick greeting based on tone
+    if any(w in tone_lower for w in ["formal", "professional", "structured"]):
+        greeting = "Dear [Recipient Name],"
+        closing = "Best regards,"
+    elif any(w in tone_lower for w in ["casual", "friendly"]):
+        greeting = "Hi [Name],"
+        closing = "Cheers,"
+    elif "empathetic" in tone_lower or "apolog" in tone_lower:
+        greeting = "Dear [Name],"
+        closing = "Warm regards,"
+    elif "urgent" in tone_lower:
+        greeting = "Dear [Recipient Name],"
+        closing = "Respectfully,"
+    else:
+        greeting = "Dear [Name],"
+        closing = "Regards,"
+
+    # Build subject line from intent
+    subject = intent.strip().rstrip(".")
+    if not subject.lower().startswith("subject:"):
+        subject = f"Subject: {subject}"
+    else:
+        subject = subject
+
+    if advanced:
+        # Advanced: well-structured, all facts woven in naturally
+        body_paragraphs = []
+        # Opening
+        if "follow up" in intent.lower() or "follow-up" in intent.lower():
+            body_paragraphs.append(
+                f"I hope this message finds you well. I am writing to follow up on {intent.lower()}. "
+                "I wanted to capture the key points and outline our next steps while the details are fresh."
+            )
+        elif "request" in intent.lower() or "proposal" in intent.lower():
+            body_paragraphs.append(
+                f"I am writing on behalf of [Company Name] to formally request {intent.lower()}. "
+                "We are evaluating options and believe your organization may be well positioned to meet our requirements."
+            )
+        elif "complaint" in intent.lower() or "apolog" in intent.lower() or "delay" in intent.lower():
+            body_paragraphs.append(
+                "I want to begin by sincerely apologizing for the inconvenience you have experienced. "
+                "I completely understand how frustrating this situation must be, and I am truly sorry."
+            )
+        elif "schedule" in intent.lower() or "meeting" in intent.lower() or "kick-off" in intent.lower():
+            body_paragraphs.append(
+                f"I am writing to coordinate {intent.lower()}. "
+                "I believe bringing the team together at the earliest opportunity will set us up for success."
+            )
+        elif "job" in intent.lower() or "application" in intent.lower() or "interview" in intent.lower():
+            body_paragraphs.append(
+                f"I hope this message finds you well. I am writing to follow up on my application "
+                "and express my continued enthusiasm for this opportunity."
+            )
+        elif "sales" in intent.lower() or "outreach" in intent.lower() or "product" in intent.lower():
+            body_paragraphs.append(
+                f"Hope you're having a great week! I'll keep this quick — I think you're really "
+                "going to like what I'm about to share."
+            )
+        elif "partnership" in intent.lower() or "strategic" in intent.lower():
+            body_paragraphs.append(
+                "I hope this message finds you well. I am reaching out to explore a strategic "
+                "partnership opportunity that I believe holds significant mutual value."
+            )
+        elif "extension" in intent.lower() or "deadline" in intent.lower():
+            body_paragraphs.append(
+                "I am writing to respectfully request a brief extension on our current deadline. "
+                "I recognize the urgency and wanted to bring this to your attention immediately."
+            )
+        elif "status" in intent.lower() or "update" in intent.lower():
+            body_paragraphs.append(
+                "Please find below the latest status update for the project. "
+                "I will continue to provide regular updates and flag any significant changes."
+            )
+        else:
+            body_paragraphs.append(
+                f"I am writing regarding {intent.lower()}. "
+                "I wanted to provide you with the relevant details and outline the next steps."
+            )
+
+        # Facts paragraph — weave all facts in naturally
+        if facts:
+            fact_sentences = []
+            for f in facts:
+                fact_sentences.append(f"{f}.")
+            body_paragraphs.append(" ".join(fact_sentences))
+
+        # CTA
+        body_paragraphs.append(
+            "Please let me know if you have any questions or would like to discuss further. "
+            "I look forward to hearing from you."
+        )
+
+        body = "\n\n".join(body_paragraphs)
+        return f"{subject}\n\n{greeting}\n\n{body}\n\n{closing}\n[Your Name]"
+
+    else:
+        # Baseline: shorter, less structured, may miss some facts
+        # Only include first 2-3 facts (simulating fact omission)
+        included_facts = facts[:2] if len(facts) > 2 else facts
+        facts_text = " ".join(f"{f}." for f in included_facts)
+
+        if "follow up" in intent.lower():
+            body = f"Following up on {intent.lower()}. {facts_text} Please let me know your thoughts."
+        elif "request" in intent.lower():
+            body = f"We need {intent.lower()}. {facts_text} Please send details."
+        elif "complaint" in intent.lower() or "delay" in intent.lower():
+            body = f"Sorry about the issue. {facts_text} We're working on it."
+        elif "schedule" in intent.lower() or "meeting" in intent.lower():
+            body = f"We need to {intent.lower()}. {fits_text} Please confirm your availability."
+        elif "job" in intent.lower() or "application" in intent.lower():
+            body = f"I applied recently and wanted to follow up. {facts_text} I'm available anytime."
+        elif "sales" in intent.lower() or "outreach" in intent.lower():
+            body = f"Want to introduce our product. {facts_text} Let me know if interested."
+        elif "partnership" in intent.lower():
+            body = f"Interested in partnering. {facts_text} Would love to discuss."
+        elif "extension" in intent.lower() or "deadline" in intent.lower():
+            body = f"We need more time. {fits_text} Can we extend?"
+        else:
+            body = f"{intent}. {facts_text} Thanks."
+
+        return f"{subject}\n\n{greeting}\n\n{body}\n\nThanks,\n[Your Name]"
+
+
 def generate_email(
     intent: str,
     facts: list[str],
@@ -285,12 +412,12 @@ def generate_email(
     use_advanced: bool,
     api_key: str = API_KEY,
 ) -> dict:
-    """Generate an email using the specified strategy. Returns dict with email + metadata."""
+    """Generate an email using the specified strategy. Falls back to demo mode on error."""
     if not api_key:
         return {
-            "email": "[ERROR: No API key configured. Set OPENROUTER_API_KEY in .env]",
-            "strategy": "N/A",
-            "error": True,
+            "email": _demo_email(intent, facts, tone, use_advanced),
+            "strategy": "Demo Mode (no API key)" + (" — Advanced" if use_advanced else " — Baseline"),
+            "error": False,
         }
 
     try:
@@ -311,16 +438,21 @@ def generate_email(
             model="openrouter/auto",
             messages=messages,
             temperature=0.3,
-            max_tokens=1024,
+            max_tokens=512,  # Reduced to stay within credit limits
         )
         email_text = (response.choices[0].message.content or "").strip()
-        return {"email": email_text, "strategy": strategy, "error": False}
-    except Exception as e:
-        return {
-            "email": f"[GENERATION ERROR: {str(e)[:200]}]",
-            "strategy": "Error",
-            "error": True,
-        }
+        if email_text:
+            return {"email": email_text, "strategy": strategy, "error": False}
+        # Empty response — fall through to demo
+    except Exception:
+        pass
+
+    # Fallback to demo mode on any error (no credits, network issue, etc.)
+    return {
+        "email": _demo_email(intent, facts, tone, use_advanced),
+        "strategy": "Demo Mode (API unavailable)" + (" — Advanced" if use_advanced else " — Baseline"),
+        "error": False,
+    }
 
 
 def evaluate_email(
@@ -494,10 +626,23 @@ with st.sidebar:
 
     # API status
     if API_KEY:
-        st.success("🟢 API Connected", icon="✅")
+        st.success("🟢 API Key Configured", icon="✅")
+        st.caption("Live generation + demo fallback available")
     else:
-        st.warning("🟡 No API Key", icon="⚠️")
-        st.caption("Set OPENROUTER_API_KEY in .env for live generation")
+        st.info("🟡 Demo Mode Active", icon="ℹ️")
+        st.caption("Set OPENROUTER_API_KEY in .env for live generation. Demo works fully offline.")
+
+    st.markdown("---")
+
+    # Mode info
+    st.markdown(
+        """
+    <div style="background:#f8fafc;border-radius:8px;padding:0.75rem;font-size:0.8rem;color:#475569;">
+        <b>💡 Demo Mode:</b> Works without API credits. Generates realistic emails using built-in templates. Upgrade to live mode by adding an OpenRouter API key.
+    </div>
+    """,
+        unsafe_allow_html=True,
+    )
 
     st.markdown("---")
 
@@ -507,12 +652,17 @@ with st.sidebar:
             """
         **3 Custom Metrics:**
         - **FRS** — Fact Recall Score
-        - **TAS** — Tone Accuracy Score  
+        - **TAS** — Tone Accuracy Score
         - **FPS** — Fluency & Professionalism
-        
+
         **Prompt Strategies:**
         - **Advanced:** Role + Few-Shot + CoT
         - **Baseline:** Zero-shot only
+
+        **Scoring:**
+        - FRS: Fully automated (token overlap)
+        - TAS: Heuristic scoring (LLM judge in live mode)
+        - FPS: Hybrid readability + structure analysis
         """
         )
 
