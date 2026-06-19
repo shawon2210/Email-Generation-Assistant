@@ -467,6 +467,8 @@ Professional assessment report with all sections: prompt templates, metric defin
 
 MIT License — see [LICENSE](LICENSE) for details.
 
+## Developer by [github.com/shawon2210](github.com/shawon2210)
+
 ---
 
 *Built with Python, Streamlit, and OpenRouter. Evaluation data produced using live LLM-as-a-Judge scoring. No scores were fabricated or simulated.*
