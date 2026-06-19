@@ -26,8 +26,8 @@ from src.prompts import (
 MODEL_A_ID = "openrouter/auto"
 MODEL_B_ID = "openrouter/auto"
 
-_MAX_RETRIES = 5
-_RETRY_DELAY = 5  # seconds
+_MAX_RETRIES = 3
+_RETRY_DELAY = 2  # seconds
 
 
 class EmailGenerator:
@@ -35,17 +35,9 @@ class EmailGenerator:
     Generates professional emails using two distinct model/prompt strategies.
     """
 
-    def __init__(self, api_key: str, base_url: str = "https://openrouter.ai/api/v1") -> None:
-        """
-        Initialise the generator with an OpenAI-compatible client.
+    def __init__(self, api_key: str, base_url: str = "https://openrouter.ai/api/v1", timeout: float = 30.0) -> None:
+        self._client = OpenAI(api_key=api_key, base_url=base_url, timeout=timeout)
 
-        Args:
-            api_key: OpenRouter API key.
-            base_url: OpenRouter API base URL.
-        """
-        self._client = OpenAI(api_key=api_key, base_url=base_url)
-
-        # Generation configs
         self._config_a = {"temperature": 0.3, "max_tokens": 1024}
         self._config_b = {"temperature": 0.3, "max_tokens": 1024}
 

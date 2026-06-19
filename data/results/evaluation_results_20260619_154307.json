@@ -1,0 +1,173 @@
+{
+  "metadata": {
+    "timestamp": "2026-06-19T15:43:07.274478",
+    "mode": "LIVE",
+    "scenarios": 10
+  },
+  "aggregate": {
+    "model_a": {
+      "frs": 1.0,
+      "tas": 0.94,
+      "fps": 0.7537,
+      "composite": 0.8979
+    },
+    "model_b": {
+      "frs": 0.775,
+      "tas": 0.54,
+      "fps": 0.6749,
+      "composite": 0.6633
+    }
+  },
+  "results": [
+    {
+      "id": 1,
+      "name": "Post-Meeting Strategy Follow-Up",
+      "tone": "Formal",
+      "a_frs": 1.0,
+      "a_tas": 1.0,
+      "a_fps": 0.8468,
+      "a_comp": 0.9489,
+      "b_frs": 0.75,
+      "b_tas": 0.6,
+      "b_fps": 0.7016,
+      "b_comp": 0.6839,
+      "email_a": "Subject: Follow-Up \u2013 Product Strategy Meeting, June 15th\n\nDear Team,\n\nThank you for your active participation in our product strategy meeting on June 15th. I wanted to capture our key decisions and next steps while they are fresh.\n\nFollowing our discussion, we have aligned on the Q3 product roadmap priorities. To move forward effectively, we have assigned three action items:\n\n1. Design mockups to be completed by June 22nd\n2. Engineering effort estimates to be submitted by June 25th\n3. Stakeholder sign-off to be secured by June 30th\n\nI would ask each owner to please confirm receipt of their respective action item and flag any blockers at the earliest opportunity.\n\nOur next follow-up meeting is scheduled for July 1st. I will circulate a formal agenda in advance.\n\nBest regards,\n[Your Name]",
+      "email_b": "Subject: Meeting Follow-up\n\nHi everyone,\n\nThanks for the meeting on June 15th. We talked about Q3 priorities and assigned some tasks. Design needs mockups by June 22, engineering estimates by June 25, and stakeholder sign-off by June 30.\n\nNext meeting is July 1st.\n\nThanks,\n[Your Name]"
+    },
+    {
+      "id": 2,
+      "name": "Vendor Proposal Request",
+      "tone": "Professional and direct",
+      "a_frs": 1.0,
+      "a_tas": 1.0,
+      "a_fps": 0.7394,
+      "a_comp": 0.9131,
+      "b_frs": 1.0,
+      "b_tas": 0.8,
+      "b_fps": 0.641,
+      "b_comp": 0.8137,
+      "email_a": "Subject: Request for Proposal \u2013 Cloud Migration Services\n\nDear [Vendor Name],\n\nI am writing on behalf of [Company Name] to formally request a detailed proposal for cloud migration services. We are evaluating qualified vendors and believe your organization may be well positioned to meet our requirements.\n\nThe scope of this engagement involves migrating the systems and data for approximately 200 employees. Our project budget is $50,000, and we require the migration to be completed in full by August 31st.\n\nWe ask that your proposal address the following:\n\n- A proposed project timeline with key milestones\n- A detailed pricing breakdown within our stated budget\n- Your approach to post-migration support and issue resolution\n\nPlease submit your proposal no later than [date]. We look forward to reviewing your submission.\n\nKind regards,\n[Your Name]",
+      "email_b": "Subject: Cloud Migration Proposal\n\nHi,\n\nWe need a proposal for cloud migration. We have 200 employees, a $50,000 budget, and need it done by August 31st. Please send us your timeline and pricing.\n\nThanks,\n[Your Name]"
+    },
+    {
+      "id": 3,
+      "name": "Job Application Follow-Up",
+      "tone": "Enthusiastic yet professional",
+      "a_frs": 1.0,
+      "a_tas": 0.8,
+      "a_fps": 0.7542,
+      "a_comp": 0.8514,
+      "b_frs": 0.5,
+      "b_tas": 0.4,
+      "b_fps": 0.6027,
+      "b_comp": 0.5009,
+      "email_a": "Subject: Following Up \u2013 Senior Data Scientist Application\n\nDear Hiring Team,\n\nI hope this message finds you well. I am writing to follow up on my application for the Senior Data Scientist position at TechNova Inc., which I submitted approximately two weeks ago.\n\nI remain genuinely excited about this opportunity and the innovative work your team is doing. Since submitting my application, I have also added a new machine learning portfolio project to my LinkedIn profile, which I believe further demonstrates my passion for applied ML.\n\nI would be delighted to discuss my background and experience at your earliest convenience and am completely flexible regarding interview timing.\n\nThank you for your time and consideration. I look forward to the possibility of connecting.\n\nWarm regards,\n[Your Name]",
+      "email_b": "Subject: Job Application\n\nHi,\n\nI applied for the Senior Data Scientist position two weeks ago. I'm still very interested. I also have a new ML project on my portfolio. I'm available anytime for an interview.\n\nThanks,\n[Your Name]"
+    },
+    {
+      "id": 4,
+      "name": "Customer Complaint Response",
+      "tone": "Empathetic and apologetic",
+      "a_frs": 1.0,
+      "a_tas": 1.0,
+      "a_fps": 0.7827,
+      "a_comp": 0.9276,
+      "b_frs": 0.75,
+      "b_tas": 0.6,
+      "b_fps": 0.6284,
+      "b_comp": 0.6595,
+      "email_a": "Subject: Sincere Apology Regarding Your Order #4521 \u2013 Delayed Delivery\n\nDear [Customer Name],\n\nI want to begin by sincerely apologizing for the delay in delivering your order #4521. I completely understand how frustrating it is to wait beyond the expected delivery date, and I am truly sorry for the inconvenience this has caused.\n\nUnfortunately, an unexpected disruption in our supply chain led to a three-day delay in fulfilment. While this was beyond our direct control, it is never an excuse for falling short of the experience you deserve.\n\nAs a token of our genuine apology, we would like to offer you a 15% discount on your next order. This discount will be automatically applied \u2014 no code is necessary.\n\nWe value your trust and continued support enormously. If there is anything else I can do, please do not hesitate to reach out directly.\n\nOnce again, I am truly sorry for the inconvenience.\n\nWarm regards,\n[Your Name]\nCustomer Experience Team",
+      "email_b": "Subject: Order Delay\n\nHi,\n\nSorry about the delay with order #4521. There was a supply chain issue that caused a 3-day delay. We're offering 15% off your next order.\n\nThanks,\n[Your Name]"
+    },
+    {
+      "id": 5,
+      "name": "Weekly Project Status Update",
+      "tone": "Formal and structured",
+      "a_frs": 1.0,
+      "a_tas": 1.0,
+      "a_fps": 0.8172,
+      "a_comp": 0.9391,
+      "b_frs": 0.75,
+      "b_tas": 0.4,
+      "b_fps": 0.7053,
+      "b_comp": 0.6184,
+      "email_a": "Subject: Weekly Status Update \u2013 Project [Name] | Week Ending June 19th\n\nDear Stakeholders,\n\nPlease find below the weekly status update for Project [Name] for the period ending June 19th.\n\nOVERALL STATUS: ON TRACK\n\nPROGRESS SUMMARY\nThe project has reached 65% completion and continues to track on schedule. No budget overruns have been recorded to date.\n\nRISKS AND ISSUES\nTwo risks have been identified and are currently being monitored:\n1. Vendor Dependency \u2013 We are tracking the delivery timeline of a key external vendor. Mitigation plans are in place.\n2. Resource Availability \u2013 A potential capacity constraint within the team has been flagged. We are assessing contingency options.\n\nNEXT MILESTONE\nUser Acceptance Testing (UAT) is scheduled to commence on June 30th. All preparation activities are on track to meet this date.\n\nI will continue to provide weekly updates and will flag any significant changes as they arise.\n\nBest regards,\n[Your Name]\nProject Manager",
+      "email_b": "Subject: Project Update\n\nHi,\n\nProject is 65% done and on track. No budget issues. Two risks: vendor dependency and resource availability. UAT starts June 30th.\n\nThanks,\n[Your Name]"
+    },
+    {
+      "id": 6,
+      "name": "SaaS Product Sales Outreach",
+      "tone": "Casual and friendly",
+      "a_frs": 1.0,
+      "a_tas": 0.8,
+      "a_fps": 0.6108,
+      "a_comp": 0.8036,
+      "b_frs": 1.0,
+      "b_tas": 0.4,
+      "b_fps": 0.7231,
+      "b_comp": 0.7077,
+      "email_a": "Subject: Hey [Name] \u2014 Cut Your Team's Costs by 30% (Free Trial Inside)\n\nHi [Name],\n\nHope you're having a great week! I'll keep this quick \u2014 I think you're really going to like what I'm about to share.\n\nI'm [Your Name] from FlowDesk, the productivity platform helping over 500 companies slash operational costs by up to 30%. We were even named Top Productivity Tool of 2025 by TechRadar!\n\nWhat makes us different? We focus on cutting the busywork so your team can focus on the work that actually matters.\n\nThe best part: you can try FlowDesk completely free for 14 days \u2014 no credit card, no strings attached.\n\nWould you be up for a quick 15-minute chat this week? I'd love to show you how it works.\n\nLooking forward to connecting!\n\nCheers,\n[Your Name]",
+      "email_b": "Subject: Product Introduction\n\nHi,\n\nI wanted to introduce FlowDesk. It helps reduce costs by 30%, has 500+ companies, and won TechRadar's Top Productivity Tool 2025. Free 14-day trial available.\n\nLet me know if you're interested.\n\nThanks,\n[Your Name]"
+    },
+    {
+      "id": 7,
+      "name": "Project Kick-Off Meeting Request",
+      "tone": "Professional and collaborative",
+      "a_frs": 1.0,
+      "a_tas": 1.0,
+      "a_fps": 0.7884,
+      "a_comp": 0.9295,
+      "b_frs": 1.0,
+      "b_tas": 0.8,
+      "b_fps": 0.8742,
+      "b_comp": 0.8914,
+      "email_a": "Subject: Project Phoenix \u2013 Kick-Off Meeting Request\n\nDear Team,\n\nI am delighted to announce that Project Phoenix has been formally approved, and I would like to bring our core team together for a kick-off meeting at the earliest opportunity.\n\nThe meeting will involve all five members spanning product, engineering, and design, and will run for approximately 90 minutes. I propose we hold this session on Monday, Tuesday, or Wednesday of next week, with a preference for morning time slots.\n\nI will circulate a detailed agenda in advance covering project objectives, roles and responsibilities, initial timelines, and our communication cadence.\n\nCould you please reply with your availability so I can confirm a time that works for everyone? I look forward to what I am confident will be a highly impactful project.\n\nBest regards,\n[Your Name]\nProject Lead",
+      "email_b": "Subject: Kick-Off Meeting\n\nHi Team,\n\nProject Phoenix is approved. We need a 90-minute kick-off meeting with all 5 team members. Available Mon-Wed next week, preferably mornings. Please share your availability.\n\nThanks,\n[Your Name]"
+    },
+    {
+      "id": 8,
+      "name": "Annual Performance Review Notification",
+      "tone": "Formal and encouraging",
+      "a_frs": 1.0,
+      "a_tas": 0.8,
+      "a_fps": 0.8446,
+      "a_comp": 0.8815,
+      "b_frs": 0.75,
+      "b_tas": 0.4,
+      "b_fps": 0.6915,
+      "b_comp": 0.6138,
+      "email_a": "Subject: Annual Performance Review Scheduled \u2013 June 25th\n\nDear [Employee Name],\n\nI am writing to inform you that your annual performance review has been scheduled for June 25th. This is an important opportunity to reflect on your contributions, celebrate your achievements, and collaboratively plan your continued growth.\n\nYour review will be conducted by your manager, Sarah Johnson, and will cover your goals, performance, and key accomplishments over the past year.\n\nTo make the most of this session, we kindly ask that you bring a completed self-assessment form. If you have not yet received the template, please reach out to the HR team.\n\nIf the scheduled date presents any difficulty, please let us know so we can make alternative arrangements.\n\nWe value your hard work and look forward to a rewarding conversation on the 25th.\n\nWarm regards,\n[Your Name]\nHuman Resources",
+      "email_b": "Subject: Performance Review\n\nHi,\n\nYour annual performance review is scheduled for June 25th with Sarah Johnson. Please bring a completed self-assessment form. Let us know if you need the template.\n\nThanks,\n[Your Name]"
+    },
+    {
+      "id": 9,
+      "name": "Strategic Partnership Proposal",
+      "tone": "Persuasive and formal",
+      "a_frs": 1.0,
+      "a_tas": 1.0,
+      "a_fps": 0.6415,
+      "a_comp": 0.8805,
+      "b_frs": 0.5,
+      "b_tas": 0.4,
+      "b_fps": 0.5952,
+      "b_comp": 0.4984,
+      "email_a": "Subject: Strategic Partnership Proposal \u2013 Co-Marketing & Revenue-Share Initiative\n\nDear [Recipient Name],\n\nI hope this message finds you well. I am reaching out to explore a strategic partnership opportunity that I believe holds significant mutual value for both of our organizations.\n\nOur platform currently serves over one million active users, the overwhelming majority of whom are mid-market B2B SaaS buyers \u2014 an audience that closely mirrors your own customer base. This alignment presents a compelling opportunity to collaborate.\n\nWe are proposing a co-marketing initiative combined with a revenue-sharing model. Under this arrangement, we would jointly promote complementary offerings to our shared audience, creating incremental value without significant additional investment.\n\nTo ensure both parties can validate the model, we suggest launching with a structured three-month pilot programme. This pilot would allow us to measure performance and build a solid foundation for a sustainable long-term partnership.\n\nI would welcome the opportunity to schedule a call to discuss this proposal in greater detail.\n\nI look forward to the possibility of building something exceptional together.\n\nYours sincerely,\n[Your Name]",
+      "email_b": "Subject: Partnership Opportunity\n\nHi,\n\nI'd like to propose a partnership. We have 1M+ users, mostly B2B SaaS buyers like your customers. We're thinking co-marketing and revenue sharing. Suggest a 3-month pilot to start.\n\nLet me know if you'd like to discuss.\n\nThanks,\n[Your Name]"
+    },
+    {
+      "id": 10,
+      "name": "Urgent Deadline Extension Request",
+      "tone": "Urgent but respectful and professional",
+      "a_frs": 1.0,
+      "a_tas": 1.0,
+      "a_fps": 0.7116,
+      "a_comp": 0.9039,
+      "b_frs": 0.75,
+      "b_tas": 0.6,
+      "b_fps": 0.5858,
+      "b_comp": 0.6453,
+      "email_a": "Subject: Urgent Request \u2013 One-Week Deadline Extension for [Project Name]\n\nDear [Recipient Name],\n\nI am writing to respectfully request a one-week extension on the deadline for [Project Name], currently set for June 20th. I recognize the urgency and wanted to bring this to your attention immediately.\n\nUnfortunately, a key team member has suffered an unexpected illness that has directly impacted our capacity during a critical phase of delivery. Despite all other milestones having been completed on schedule, this unforeseen circumstance has created a gap we cannot close by the original date without compromising quality.\n\nWe are requesting an extended deadline of June 27th \u2014 one additional week \u2014 which we are confident will allow us to deliver the project to the standard you expect.\n\nI sincerely appreciate your understanding and flexibility. I am happy to arrange a call to discuss further.\n\nRespectfully,\n[Your Name]",
+      "email_b": "Subject: Deadline Extension\n\nHi,\n\nWe need a one-week extension for [Project Name] \u2014 from June 20th to June 27th. A key team member got sick. Everything else is on track. Can we discuss?\n\nThanks,\n[Your Name]"
+    }
+  ]
+}

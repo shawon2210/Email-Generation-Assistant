@@ -1,0 +1,11 @@
+ID,Scenario,Tone,A-FRS,A-TAS,A-FPS,A-Comp,B-FRS,B-TAS,B-FPS,B-Comp,Winner
+1,Post-Meeting Strategy Follow-Up,Formal,1.0,1.0,0.8468,0.9489,0.75,0.6,0.7016,0.6839,A
+2,Vendor Proposal Request,Professional and direct,1.0,1.0,0.7394,0.9131,1.0,0.8,0.641,0.8137,A
+3,Job Application Follow-Up,Enthusiastic yet professional,1.0,0.8,0.7542,0.8514,0.5,0.4,0.6027,0.5009,A
+4,Customer Complaint Response,Empathetic and apologetic,1.0,1.0,0.7827,0.9276,0.75,0.6,0.6284,0.6595,A
+5,Weekly Project Status Update,Formal and structured,1.0,1.0,0.8172,0.9391,0.75,0.4,0.7053,0.6184,A
+6,SaaS Product Sales Outreach,Casual and friendly,1.0,0.8,0.6108,0.8036,1.0,0.4,0.7231,0.7077,A
+7,Project Kick-Off Meeting Request,Professional and collaborative,1.0,1.0,0.7884,0.9295,1.0,0.8,0.8742,0.8914,A
+8,Annual Performance Review Notification,Formal and encouraging,1.0,0.8,0.8446,0.8815,0.75,0.4,0.6915,0.6138,A
+9,Strategic Partnership Proposal,Persuasive and formal,1.0,1.0,0.6415,0.8805,0.5,0.4,0.5952,0.4984,A
+10,Urgent Deadline Extension Request,Urgent but respectful and professional,1.0,1.0,0.7116,0.9039,0.75,0.6,0.5858,0.6453,A

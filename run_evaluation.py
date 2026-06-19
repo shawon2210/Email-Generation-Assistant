@@ -144,7 +144,11 @@ def main() -> None:
     print("═" * 60)
 
     from src.evaluator import run_evaluation
-    results = run_evaluation(scenarios_path=args.scenarios)
+    try:
+        results = run_evaluation(scenarios_path=args.scenarios)
+    except KeyboardInterrupt:
+        print("\n  ⚠ Evaluation interrupted by user")
+        results = []
 
     if not results:
         print("No results returned. Exiting.")
